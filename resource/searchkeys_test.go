@@ -3,6 +3,7 @@ package resource
 import (
 	"testing"
 
+	"github.com/cccteam/ccc/accesstypes"
 	"github.com/google/go-cmp/cmp"
 )
 

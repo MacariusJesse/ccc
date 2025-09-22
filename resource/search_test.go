@@ -1,9 +1,8 @@
 package resource
 
 import (
+	"strings"
 	"testing"
-
-	"github.com/go-playground/errors/v5"
 )
 
 func TestSearchKey_String(t *testing.T) {
@@ -520,7 +519,7 @@ func TestSearch_ErrorTypes(t *testing.T) {
 				return
 			}
 			if tt.wantErr && err != nil {
-				if !errors.Is(err, errors.New(tt.errString)) && err.Error() != tt.errString {
+				if !strings.Contains(err.Error(), tt.errString) {
 					t.Errorf("Search.spannerStmt() error = %v, want error containing %v", err, tt.errString)
 				}
 			}

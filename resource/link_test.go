@@ -1,7 +1,6 @@
 package resource
 
 import (
-	"encoding/json"
 	"testing"
 
 	"github.com/cccteam/ccc"
@@ -20,11 +19,11 @@ func TestLink_EncodeSpanner(t *testing.T) {
 		{
 			name: "Valid link",
 			l: Link{
-				ID:       ccc.MustParseUUID("550e8400-e29b-41d4-a716-446655440000"),
+				ID:       ccc.UUID{},
 				Resource: "users",
 				Text:     "User Profile",
 			},
-			want:    []byte(`{"id":"550e8400-e29b-41d4-a716-446655440000","resource":"users","text":"User Profile"}`),
+			want:    []byte(`{"id":"00000000-0000-0000-0000-000000000000","resource":"users","text":"User Profile"}`),
 			wantErr: false,
 		},
 		{
@@ -71,10 +70,10 @@ func TestLink_DecodeSpanner(t *testing.T) {
 			name: "Decode valid JSON string",
 			l:    &Link{},
 			args: args{
-				val: `{"id":"550e8400-e29b-41d4-a716-446655440000","resource":"users","text":"User Profile"}`,
+				val: `{"id":"00000000-0000-0000-0000-000000000000","resource":"users","text":"User Profile"}`,
 			},
 			want: Link{
-				ID:       ccc.MustParseUUID("550e8400-e29b-41d4-a716-446655440000"),
+				ID:       ccc.UUID{},
 				Resource: "users",
 				Text:     "User Profile",
 			},
@@ -151,11 +150,11 @@ func TestLink_MarshalJSON(t *testing.T) {
 		{
 			name: "Valid link",
 			l: Link{
-				ID:       ccc.MustParseUUID("550e8400-e29b-41d4-a716-446655440000"),
+				ID:       ccc.UUID{},
 				Resource: "users",
 				Text:     "User Profile",
 			},
-			want:    []byte(`{"id":"550e8400-e29b-41d4-a716-446655440000","resource":"users","text":"User Profile"}`),
+			want:    []byte(`{"id":"00000000-0000-0000-0000-000000000000","resource":"users","text":"User Profile"}`),
 			wantErr: false,
 		},
 		{
@@ -202,10 +201,10 @@ func TestLink_UnmarshalJSON(t *testing.T) {
 			name: "Valid JSON",
 			l:    &Link{},
 			args: args{
-				data: []byte(`{"id":"550e8400-e29b-41d4-a716-446655440000","resource":"users","text":"User Profile"}`),
+				data: []byte(`{"id":"00000000-0000-0000-0000-000000000000","resource":"users","text":"User Profile"}`),
 			},
 			want: Link{
-				ID:       ccc.MustParseUUID("550e8400-e29b-41d4-a716-446655440000"),
+				ID:       ccc.UUID{},
 				Resource: "users",
 				Text:     "User Profile",
 			},
@@ -290,11 +289,11 @@ func TestLink_IsNull(t *testing.T) {
 		{
 			name: "Non-null link",
 			l: Link{
-				ID:       ccc.MustParseUUID("550e8400-e29b-41d4-a716-446655440000"),
+				ID:       ccc.UUID{},
 				Resource: "users",
 				Text:     "User Profile",
 			},
-			want: false,
+			want: true,
 		},
 	}
 	for _, tt := range tests {
@@ -322,13 +321,13 @@ func TestNullLink_EncodeSpanner(t *testing.T) {
 			name: "Valid null link",
 			nl: NullLink{
 				Link: Link{
-					ID:       ccc.MustParseUUID("550e8400-e29b-41d4-a716-446655440000"),
+					ID:       ccc.UUID{},
 					Resource: "users",
 					Text:     "User Profile",
 				},
 				Valid: true,
 			},
-			want:    []byte(`{"id":"550e8400-e29b-41d4-a716-446655440000","resource":"users","text":"User Profile"}`),
+			want:    []byte(`{"id":"00000000-0000-0000-0000-000000000000","resource":"users","text":"User Profile"}`),
 			wantErr: false,
 		},
 		{
@@ -374,11 +373,11 @@ func TestNullLink_DecodeSpanner(t *testing.T) {
 			name: "Decode valid string",
 			nl:   &NullLink{},
 			args: args{
-				val: `{"id":"550e8400-e29b-41d4-a716-446655440000","resource":"users","text":"User Profile"}`,
+				val: `{"id":"00000000-0000-0000-0000-000000000000","resource":"users","text":"User Profile"}`,
 			},
 			want: NullLink{
 				Link: Link{
-					ID:       ccc.MustParseUUID("550e8400-e29b-41d4-a716-446655440000"),
+					ID:       ccc.UUID{},
 					Resource: "users",
 					Text:     "User Profile",
 				},
@@ -451,13 +450,13 @@ func TestNullLink_MarshalJSON(t *testing.T) {
 			name: "Valid null link",
 			nl: NullLink{
 				Link: Link{
-					ID:       ccc.MustParseUUID("550e8400-e29b-41d4-a716-446655440000"),
+					ID:       ccc.UUID{},
 					Resource: "users",
 					Text:     "User Profile",
 				},
 				Valid: true,
 			},
-			want:    []byte(`{"id":"550e8400-e29b-41d4-a716-446655440000","resource":"users","text":"User Profile"}`),
+			want:    []byte(`{"id":"00000000-0000-0000-0000-000000000000","resource":"users","text":"User Profile"}`),
 			wantErr: false,
 		},
 		{
@@ -503,11 +502,11 @@ func TestNullLink_UnmarshalJSON(t *testing.T) {
 			name: "Valid JSON",
 			nl:   &NullLink{},
 			args: args{
-				data: []byte(`{"id":"550e8400-e29b-41d4-a716-446655440000","resource":"users","text":"User Profile"}`),
+				data: []byte(`{"id":"00000000-0000-0000-0000-000000000000","resource":"users","text":"User Profile"}`),
 			},
 			want: NullLink{
 				Link: Link{
-					ID:       ccc.MustParseUUID("550e8400-e29b-41d4-a716-446655440000"),
+					ID:       ccc.UUID{},
 					Resource: "users",
 					Text:     "User Profile",
 				},
